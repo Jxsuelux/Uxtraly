@@ -3,22 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ONYX | Perfumes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <title>UXTRALY | Perfumes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #000000;
-            --card-bg: #0d0d0d;
-            --accent-color: #ff0000; 
-            --text-main: #ffffff;
-            --text-secondary: #a0a0a0;
-            --border-color: #222222;
+            --bg-color: #0b0a08;
+            --bg-elevated: #141210;
+            --card-bg: #121009;
+            --gold: #c8a24a;
+            --gold-bright: #e7c777;
+            --text-main: #f3ede0;
+            --text-secondary: #9b9388;
+            --border-color: #2a261e;
+            --border-bright: #45391f;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -28,107 +36,230 @@
             overflow-x: hidden;
         }
 
-        .promo-bar {
-            background-color: var(--accent-color);
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            font-size: 0.85rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        a {
+            color: inherit;
         }
 
+        :focus-visible {
+            outline: 1px solid var(--gold-bright);
+            outline-offset: 3px;
+        }
+
+        /* ---------- Promo bar ---------- */
+        .promo-bar {
+            background-color: var(--bg-elevated);
+            color: var(--gold-bright);
+            text-align: center;
+            padding: 9px 0;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border-top: 1px solid var(--border-bright);
+            border-bottom: 1px solid var(--border-bright);
+        }
+
+        /* ---------- Header ---------- */
         header {
-            padding: 15px 5%;
+            padding: 18px 5% 14px;
             display: flex;
-            justify-content: center; 
+            justify-content: center;
             align-items: center;
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
-            background: rgba(0,0,0,0.95);
+            background: rgba(11, 10, 8, 0.92);
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            flex-direction: column; 
-            gap: 15px;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .logo-container {
+            text-decoration: none;
         }
 
         .logo-img {
-            height: 50px; 
+            height: 46px;
             width: auto;
             object-fit: contain;
+            filter: grayscale(1) brightness(1.6);
         }
 
         nav {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            align-items: center;
+            gap: 28px;
         }
 
         nav a {
-            color: var(--text-main);
+            position: relative;
+            color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.72rem;
+            font-weight: 500;
             text-transform: uppercase;
-            transition: 0.3s;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
+            padding-bottom: 4px;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.35s ease;
         }
 
         nav a:hover {
-            color: var(--accent-color);
+            color: var(--text-main);
         }
 
-        .hero {
+        nav a:hover::after {
             width: 100%;
-            height: 450px; 
-            max-height: 60vh; 
+        }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 460px;
+            max-height: 62vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: url('IMG1.png') center center / contain no-repeat;
-            background-color: #050505; 
+            overflow: hidden;
             border-bottom: 1px solid var(--border-color);
-            margin-top: 10px;
         }
 
+        .hero-stone {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 55% 50% at 18% 25%, rgba(200, 162, 74, 0.10), transparent 60%),
+                radial-gradient(ellipse 50% 55% at 82% 75%, rgba(200, 162, 74, 0.07), transparent 60%),
+                radial-gradient(ellipse 70% 80% at 50% 50%, rgba(231, 199, 119, 0.04), transparent 70%),
+                repeating-linear-gradient(125deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 4px),
+                linear-gradient(160deg, #0b0a08, #161310 50%, #0b0a08);
+            background-size: 200% 200%;
+            background-position: 0% 0%;
+            animation: stoneShift 24s ease-in-out infinite alternate;
+        }
+
+        @keyframes stoneShift {
+            0%   { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .hero-watermark {
+            position: absolute;
+            font-family: 'Fraunces', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: clamp(4rem, 16vw, 11rem);
+            color: rgba(200, 162, 74, 0.06);
+            letter-spacing: 2px;
+            white-space: nowrap;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .hero-frame {
+            position: relative;
+            width: min(78%, 420px);
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-bright);
+            background: rgba(20, 18, 16, 0.4);
+            box-shadow: 0 0 60px rgba(200, 162, 74, 0.05);
+        }
+
+        .hero-frame img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+        }
+
+        /* ---------- Layout ---------- */
         .container {
-            padding: 40px 5%;
+            padding: 64px 5% 40px;
+        }
+
+        .section-heading {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 36px;
+        }
+
+        .eyebrow {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
         }
 
         .section-title {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            border-left: 5px solid var(--accent-color);
-            padding-left: 15px;
-            text-transform: uppercase;
+            font-family: 'Fraunces', serif;
+            font-style: italic;
+            font-weight: 500;
+            font-size: clamp(1.9rem, 4vw, 2.6rem);
+            letter-spacing: 0.3px;
         }
 
+        .section-rule {
+            width: 56px;
+            height: 1px;
+            background: var(--gold);
+            margin-top: 10px;
+        }
+
+        /* ---------- Product grid ---------- */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 22px;
         }
 
         .product-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 15px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            padding: 16px;
+            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
             cursor: pointer;
             position: relative;
+            opacity: 0;
+            transform: translateY(18px);
+            animation: cardIn 0.6s ease forwards;
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.05s; }
+        .product-card:nth-child(2) { animation-delay: 0.15s; }
+        .product-card:nth-child(3) { animation-delay: 0.25s; }
+
+        @keyframes cardIn {
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color);
+            transform: translateY(-6px);
+            border-color: var(--border-bright);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
         }
 
         .product-image {
             width: 100%;
             aspect-ratio: 1/1;
-            background-color: #111;
-            margin-bottom: 20px;
+            background-color: #0e0d0a;
+            margin-bottom: 16px;
             overflow: hidden;
         }
 
@@ -136,61 +267,115 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.06);
         }
 
         .product-info h3 {
-            font-size: 1rem;
-            margin-bottom: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 12px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            min-height: 2.4rem; /* Asegura que los nombres largos no muevan el Coming Soon */
+            letter-spacing: 0.6px;
+            min-height: 2.3rem;
+            color: var(--text-main);
         }
 
         .coming-soon {
-            color: var(--accent-color);
-            font-weight: bold;
-            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--gold-bright);
+            font-weight: 600;
+            font-size: 0.68rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            border: 1px solid var(--border-bright);
+            padding: 5px 12px;
         }
 
+        .coming-soon::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--gold);
+            flex-shrink: 0;
+        }
+
+        /* ---------- Footer ---------- */
         footer {
-            padding: 40px 5%;
-            background-color: #050505;
-            border-top: 1px solid var(--border-color);
+            padding: 48px 5% 36px;
+            background-color: var(--bg-elevated);
+            border-top: 1px solid var(--border-bright);
             text-align: center;
         }
 
+        .footer-tagline {
+            font-family: 'Fraunces', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 26px;
+        }
+
         .social-links {
-            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 22px;
+            margin-bottom: 26px;
         }
 
         .social-links a {
-            color: var(--text-main);
-            font-size: 1rem;
-            margin: 0 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border: 1px solid var(--border-bright);
+            color: var(--text-secondary);
             text-decoration: none;
-            text-transform: uppercase;
-            font-weight: bold;
+            transition: color 0.3s ease, border-color 0.3s ease;
         }
 
+        .social-links a:hover {
+            color: var(--gold-bright);
+            border-color: var(--gold);
+        }
+
+        .social-links svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ---------- Responsive ---------- */
         @media (max-width: 768px) {
-            .hero { height: 300px; }
-            .logo-img { height: 40px; }
+            .hero { height: 320px; }
+            .logo-img { height: 38px; }
+            .container { padding: 48px 6% 32px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+            html { scroll-behavior: auto; }
         }
     </style>
 </head>
 <body>
 
     <div class="promo-bar">
-        SOLO ENVIOS EN EL ESTADO
+        Solo envíos en el estado
     </div>
 
     <header>
         <a href="index.html" class="logo-container">
-            <img src="logo.png" alt="AETHERN LOGO" class="logo-img">
+            <img src="logo.png" alt="ONYX" class="logo-img">
         </a>
-        
+
         <nav>
             <a href="categorías.html">Categorías</a>
             <a href="index.html">Productos</a>
@@ -198,11 +383,21 @@
         </nav>
     </header>
 
-    <section class="hero"></section>
+    <section class="hero">
+        <div class="hero-stone"></div>
+        <span class="hero-watermark">Perfumes</span>
+        <div class="hero-frame">
+            <img src="IMG1.png" alt="Perfumes Collection">
+        </div>
+    </section>
 
     <main class="container">
-        <h2 class="section-title">Perfumes Collection</h2>
-        
+        <div class="section-heading">
+            <span class="eyebrow">Colección</span>
+            <h2 class="section-title">Perfumes</h2>
+            <div class="section-rule"></div>
+        </div>
+
         <div class="product-grid">
             <div class="product-card">
                 <div class="product-image">
@@ -237,9 +432,35 @@
     </main>
 
     <footer>
+        <p class="footer-tagline">Piezas exclusivas. Tiraje limitado.</p>
+
         <div class="social-links">
-          
+            <a href="#" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+            </a>
+            <a href="#" aria-label="TikTok">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 4c0 2.5 2 4.5 4.5 4.5"/></svg>
+            </a>
+            <a href="#" aria-label="WhatsApp">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21l1.4-4.2A8 8 0 1 1 8.2 19.6L3 21z"/></svg>
+            </a>
+        </div>
     </footer>
+
+    <script>
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const cards = document.querySelectorAll('.product-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            cards.forEach(card => observer.observe(card));
+        }
+    </script>
 
 </body>
 </html>
